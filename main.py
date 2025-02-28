@@ -76,15 +76,6 @@ def read_matrix_from_terminal(n):
     return arr
 
 
-def weak_get_determinant(matrix, n):
-    if n == 2:
-        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
-    return sum([(-1)**j*matrix[0][j] * weak_get_determinant([row[:j] + row[j + 1:] for row in matrix[1:]], n - 1) for j in range(n)])
-
-def strong_get_determinant(triang_matrix):
-    return reduce(lambda x,y: x*y, [triang_matrix[i][i] for i in range(len(triang_matrix))])
-
-
 def print_matrix(arr):
     print('[', end='')
     for row in range(len(arr)):
@@ -94,7 +85,17 @@ def print_matrix(arr):
             print(list(map(lambda x: round(x, 2), arr[row])), '].', sep='')
 
 
-#надо еще сделать чтобы дет на -1 умножался
+
+
+def weak_get_determinant(matrix, n):
+    if n == 2:
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+    return sum([(-1)**j*matrix[0][j] * weak_get_determinant([row[:j] + row[j + 1:] for row in matrix[1:]], n - 1) for j in range(n)])
+
+def strong_get_determinant(triang_matrix):
+    return reduce(lambda x,y: x*y, [triang_matrix[i][i] for i in range(len(triang_matrix))])
+
+
 def find_not_null_row(arr, row):
     global det_mult
     for i in range(row, len(arr)):
@@ -102,7 +103,6 @@ def find_not_null_row(arr, row):
             det_mult *= (-1)**(row-i)
             return [arr[k] for k in range(row)] + [arr[i]] + [arr[k] for k in range(row, n) if k!=i]
     return 0
-
 
 
 def triangulate_matrix(arr):
