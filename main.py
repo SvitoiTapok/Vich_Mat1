@@ -184,5 +184,5 @@ print("Рассчитанный вектор невязок([r_1, r_2, ...]", [s
 
 #numpy
 print("детерминант рассчитанный с помощью сторонних библиотек:",  round(np.linalg.det(np.array(matrix_for_np_solving)[:, :len(matrix_for_np_solving)]), 2))
-print("решение СЛАУ расситанное с помощью сторонних библиотек:", np.linalg.solve(np.array(matrix_for_np_solving)[:, :n], np.array(matrix_for_np_solving)[:, n]))
+print("решение СЛАУ рассчитанное с помощью сторонних библиотек:", np.linalg.solve(np.array(matrix_for_np_solving)[:, :n], np.array(matrix_for_np_solving)[:, n]))
 # main_part
